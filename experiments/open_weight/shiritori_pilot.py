@@ -4,7 +4,7 @@ Phase 1 Pilot: llm-jp-3 shiritori experiment
 """
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import json
 from datetime import datetime
 
@@ -12,11 +12,16 @@ MODEL_NAME = "llm-jp/llm-jp-3-13b-instruct3"
 
 print("Loading model...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_compute_dtype=torch.float16,
+)
+
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
-    torch_dtype=torch.float16,
+    quantization_config=bnb_config,
     device_map="auto",
-    load_in_4bit=True,  # 4bit量子化でVRAM節約
 )
 print("Model loaded!")
 
@@ -48,7 +53,7 @@ print("\n[2] しりとりのルール")
 resp = ask("しりとりのルールを説明してください。")
 print(f"  → {resp}")
 
-# 3. quick pilot: うみ → ?  (n=5)
+# 3. quick pilot: うみ → ? (n=5)
 print("\n[3] Quick pilot: うみ → ? (n=5, temp=1.0)")
 PROMPT = "しりとりをしましょう。私からはじめます。うみ"
 
