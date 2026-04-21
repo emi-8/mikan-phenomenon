@@ -33,7 +33,7 @@ mikan-phenomenon/
 │   │   ├── claude_natural_precise.py
 │   │   └── claude_natural_imprecise.py
 │   └── open_weight/                  # Open-weight model pilots
-│       ├── shiritori_pilot_fixed.py  # llm-jp-3 pilot (v1)
+│       ├── shiritori_pilot.py  # llm-jp-3 pilot (v1)
 │       ├── shiritori_pilot_v2.py     # llm-jp-3 pilot (v2, precise condition)
 │       └── shiritori_qwen.py         # Qwen2.5-7B-Instruct pilot
 ├── data/
