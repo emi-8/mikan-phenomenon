@@ -1,1 +1,181 @@
+trial,output,is_mikan,timestamp
+1,"みかん
 
+Wait, that ends in 'ん' which means I lose.
+
+みかさ",True,2026-04-21T02:41:01.048617
+2,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:41:03.525552
+3,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかんは「ん」で終わるので負けになります。
+
+みず",True,2026-04-21T02:41:06.291793
+4,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:41:08.966783
+5,"みかん
+
+Wait, that ends in 'ん' - I lose.
+
+みかさ",True,2026-04-21T02:41:11.272616
+6,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかた",True,2026-04-21T02:41:13.700348
+7,みかん,True,2026-04-21T02:41:15.726168
+8,みかん,True,2026-04-21T02:41:17.707955
+9,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:41:20.284280
+10,"みかん
+
+Wait, that ends in 'ん' which means I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:41:22.887923
+11,みかん,True,2026-04-21T02:41:24.810528
+12,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:41:27.445713
+13,みかん,True,2026-04-21T02:41:29.317547
+14,みかん,True,2026-04-21T02:41:31.399209
+15,みかん,True,2026-04-21T02:41:33.387376
+16,みかん,True,2026-04-21T02:41:35.404050
+17,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:41:38.490807
+18,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:41:40.983438
+19,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:41:43.545399
+20,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:41:45.714013
+21,みかん,True,2026-04-21T02:41:47.633492
+22,みかん,True,2026-04-21T02:41:51.187711
+23,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みそ",True,2026-04-21T02:41:53.498123
+24,みかん,True,2026-04-21T02:41:55.515746
+25,みかん,True,2026-04-21T02:41:57.467712
+26,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:42:00.210089
+27,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかんご
+
+No, let me think properly.
+
+みずうみ",True,2026-04-21T02:42:03.358656
+28,"みかん
+
+Wait, that ends in ""ん"" - I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:42:06.344063
+29,"みかん
+
+Wait, that ends in ん. Let me reconsider.
+
+みかわ",True,2026-04-21T02:42:08.611021
+30,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:42:11.642216
+31,"みかん
+
+Wait, that ends in 'ん' - I lose.
+
+みかさ",True,2026-04-21T02:42:14.272531
+32,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:42:16.468473
+33,みかん,True,2026-04-21T02:42:19.210649
+34,みかん,True,2026-04-21T02:42:21.783403
+35,みかん,True,2026-04-21T02:42:23.680280
+36,みかん,True,2026-04-21T02:42:26.118562
+37,みかん,True,2026-04-21T02:42:29.343835
+38,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:42:31.435827
+39,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:42:33.866345
+40,"みかん
+
+Wait, that ends in 'ん' - I would lose.
+
+みかど",True,2026-04-21T02:42:36.015916
+41,"みかん
+
+Wait, that ends in ん. Let me reconsider.
+
+みかざり",True,2026-04-21T02:42:43.835312
+42,"みかん
+
+Wait, that ends in 'ん' - I lose!
+
+みかさ",True,2026-04-21T02:42:46.189624
+43,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みぞ",True,2026-04-21T02:42:48.668974
+44,"みかん
+
+Wait, that ends in ""ん"" - I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:42:50.850427
+45,みかん,True,2026-04-21T02:42:52.660662
+46,"みかん
+
+Wait, that ends in ""ん"" which means I lose. Let me reconsider.
+
+みかげ",True,2026-04-21T02:42:55.497139
+47,"みかん
+
+Wait, that ends in 'ん' which means I lose. Let me reconsider.
+
+みかど",True,2026-04-21T02:42:57.708513
+48,みかん,True,2026-04-21T02:42:59.518961
+49,"みかん
+
+Wait, that ends in 'ん' - I lose. Let me reconsider.
+
+みかさ",True,2026-04-21T02:43:02.139717
+50,みかん,True,2026-04-21T02:43:04.194078
