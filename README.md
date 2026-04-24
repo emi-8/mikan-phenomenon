@@ -68,14 +68,11 @@ mikan-phenomenon/
 │       ├── shiritori_pilot_v2.py     # llm-jp-3 pilot (v2, precise condition)
 │       ├── shiritori_qwen.py         # Qwen2.5-7B-Instruct pilot
 │       └── shiritori_qwen14b.py      # Qwen2.5-14B-Instruct pilot
-├── data/
-│   ├── claude_fixed_prompt_kami_n50_20260420.csv
-│   ├── claude_natural_precise_umi_n50_20260420.csv
-│   └── claude_natural_imprecise_umi_n50_20260420.csv
-└── paper/
-    ├── main.tex
-    ├── references.bib
-    └── neurips_2026.sty
+└── data/
+    ├── claude_fixed_prompt_kami_n50_20260420.csv
+    ├── claude_natural_precise_umi_n50_20260420.csv
+    └── claude_natural_imprecise_umi_n50_20260420.csv
+
 ```
 
 ---
@@ -112,14 +109,6 @@ python experiments/open_weight/shiritori_qwen.py
 ```
 
 Tested on RTX 2080 Ti (11GB VRAM), Windows 11, CUDA 12.x, Python 3.11.
-
----
-
-## Paper
-
-Source in `paper/`. Compiled with pdflatex + NeurIPS 2026 style.
-
-Submitted to ICML 2026 Mechanistic Interpretability Workshop.
 
 ---
 
