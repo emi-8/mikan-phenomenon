@@ -1,26 +1,57 @@
 # The Mikan Phenomenon
-
 **Mora-level distributional attractors override explicit rules in large language models.**
 
-This repository contains experiments, data, and paper source for the study of the *Mikan Phenomenon*: a systematic failure mode in which LLMs playing the Japanese word-chain game shiritori (しりとり) reach for みかん (mikan, tangerine) when the required response must begin with the mora /mi/—despite みかん ending in ん, which constitutes an immediate loss under the game's rules.
+This repository contains experiments, data, and paper source for the study of the Mikan Phenomenon: a systematic failure mode in which LLMs playing the Japanese word-chain game shiritori (しりとり) reach for みかん (mikan, tangerine) when the required response must begin with the mora /mi/—despite みかん ending in ん, which constitutes an immediate loss under the game's rules.
+
+---
 
 ## What is the Mikan Phenomenon?
 
 Shiritori (しりとり) is a Japanese word-chain game with two rules:
-1. Each word must begin with the final mora of the previous word
-2. Any word ending in ん results in immediate loss
 
-Given any /mi/-ending word (うみ, かみ, しみ, etc.), frontier LLMs consistently produce みかん—demonstrating that distributional gravity toward high-frequency tokens can override explicitly represented constraints.
+1. Each word must begin with the final mora of the previous word
+2. Any word ending in **ん** results in immediate loss
+
+Given any /mi/-ending word (うみ, かみ, しみ, etc.), frontier LLMs consistently produce みかん—demonstrating that distributional gravity toward high-frequency tokens can override explicitly represented constraints. All models that produced みかん could correctly state the rules when asked, suggesting the failure is one of *application* rather than *representation*.
+
+---
 
 ## Key Findings
 
-- **Claude Sonnet 4.6**: 100% みかん across all conditions (fixed prompt n=50, natural precise rule n=50)
-- **GPT-5.3 UI vs API discrepancy**: 3/3 みかん in ChatGPT UI, 0/50 in API—suggesting inference-time reasoning configuration differs between endpoints
-- **Rule-precision paradox**: Precise rule statements → 100% みかん; imprecise statements → 64% みかん (Fisher's exact p=1.18×10⁻⁶)
-- **Rule-cascade effect**: Non-みかん responses under imprecise conditions were predominantly りんご (11/50) and りす (9/50)—neither み-initial, indicating Rule 1 collapse
-- **First-token commitment**: 29/50 correction attempts began with みか- prefix, indicating prefix-level commitment before constraint-checking
-- **Cross-mora generalization**: /ki/ consistently produced きりん/きつね (5/5, both ん-terminal)
-- **Longitudinal stability**: Claude みかん attractor stable across October 2025 → April 2026
+**みかん attractor (Claude Sonnet 4.6, API-scale, n=50 per condition)**
+- Natural, precise rule condition: 50/50 みかん (100%)
+- Natural, imprecise rule condition: 30/50 みかん (60%) — Fisher's exact vs. precise: p=1.76×10⁻⁷
+
+**Rule-precision effect**
+Precise rule statements did not suppress the attractor; imprecise statements reduced but did not eliminate it. The standard assumption that clearer constraints produce more reliable compliance did not hold in this setting.
+
+**Rule-cascade effect**
+Non-みかん responses under the imprecise condition were predominantly りんご (11/50) and りす (9/50)—neither み-initial, indicating collapse of mora-chaining compliance (Rule 1). Attractor suppression came at the cost of a secondary rule violation.
+
+**First-token commitment**
+29/50 correction attempts began with みか- prefix, indicating prefix-level commitment before constraint-checking could intervene.
+
+**Cross-mora generalization**
+/ki/ consistently produced きりん or きつね (5/5)—both ん-terminal, both game losses. /gi/ produced ぎんこう (3/3)—game-legal. The Mikan Phenomenon is an instance of a general mechanism: alignment failure arises when the strongest mora-level attractor happens to be ん-terminal.
+
+**Open-weight comparison (Qwen2.5-7B-Instruct, n=50)**
+みかん rate: 4/50 (8%). Dominant response: みなみ (~20/50)—game-legal. The attractor mechanism generalizes; the specific attractor is model-specific.
+
+**Gemini dissociation**
+Gemini 3 showed opposite context-dependence from Claude: suppression under rich context (0/3 みかん) but 4/4 みかん under minimal context. Claude showed no suppression under the rich context condition (100% みかん).
+
+**UI vs. API discrepancy**
+GPT-5.3 produced みかん on 3/3 manual ChatGPT UI trials but 0/50 API trials. Candidate mechanism: extended internal reasoning active by default in API calls. Researchers should not assume UI and API behavior are equivalent.
+
+**Failure mode taxonomy**
+Five qualitatively distinct failure modes identified: silent attractor; attractor + self-recognition; absent post-generation evaluation (Grok Fast); semantic association bias; no attractor.
+
+**Longitudinal stability**
+The Claude みかん attractor was stable across October 2025, November 2025, and April 2026, persisting through explicit metacognitive discussion of its mechanism.
+
+> **Note (April 24, 2026):** Trials conducted under identical No Rule conditions produced みそ rather than みかん. The identity of the dominant /mi/ completion may be sensitive to model updates and deployment context. All quantitative claims in the paper are based on data collected April 20–21, 2026, documented in the supplementary CSV logs.
+
+---
 
 ## Repository Structure
 
@@ -47,19 +78,26 @@ mikan-phenomenon/
     └── neurips_2026.sty
 ```
 
+---
+
 ## Data
 
 All CSV files contain the following columns:
-- `trial`: Trial number
-- `output`: Full model output
-- `is_mikan`: Boolean, True if output contains みかん
-- `timestamp`: ISO 8601 timestamp (JST, UTC+9)
 
-> **Note**: Timestamps reflect JST (UTC+9). Experiments were conducted on April 20, 2026 (US time).
+| Column | Description |
+|--------|-------------|
+| `trial` | Trial number |
+| `output` | Full model output |
+| `is_mikan` | Boolean, True if output contains みかん |
+| `timestamp` | ISO 8601 timestamp (JST, UTC+9) |
+
+Note: Timestamps reflect JST (UTC+9). Experiments were conducted on April 20, 2026 (US time).
+
+---
 
 ## Reproducing API Experiments
 
-```python
+```bash
 pip install anthropic
 python experiments/api/claude_fixed_prompt.py
 ```
@@ -68,19 +106,26 @@ Requires `ANTHROPIC_API_KEY` environment variable.
 
 ## Reproducing Open-Weight Experiments
 
-```python
+```bash
 pip install torch transformers accelerate bitsandbytes sentencepiece
 python experiments/open_weight/shiritori_qwen.py
 ```
 
 Tested on RTX 2080 Ti (11GB VRAM), Windows 11, CUDA 12.x, Python 3.11.
 
+---
+
 ## Paper
 
 Source in `paper/`. Compiled with pdflatex + NeurIPS 2026 style.
+
+Submitted to ICML 2026 Mechanistic Interpretability Workshop.
+
+---
 
 ## Notes on Methodology
 
 - Manual experiments used fresh private/incognito sessions per trial to eliminate conversational carryover
 - API experiments used default sampling parameters (temperature=1.0)
 - Model names reflect interface labels at time of testing
+- UI and API behavior should not be assumed equivalent (see GPT-5.3 discrepancy above)
