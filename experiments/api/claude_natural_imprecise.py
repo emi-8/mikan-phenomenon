@@ -1,8 +1,7 @@
 # Mikan Attractor API Experiment
 # Claude Sonnet 4.6 — Natural Imprecise Prompt Condition
 # Tests whether Claude produces みかん when the prior word ends in /mi/.
-# Uses the same natural imprecise prompt as the manual pilot experiment (April 17, 2026).
-
+# Condition: single-turn, imprecise rule ("んで終わったらダメ"), prior word うみ
 # Install: pip install anthropic
 
 import anthropic
@@ -18,7 +17,7 @@ from datetime import datetime
 import os
 client = anthropic.Anthropic(api_key=os.environ.get('ANTHROPIC_API_KEY'))
 
-USER_PROMPT = """しりとりをしましょう。んで終わったらダメ。私からはじめます。うみ"""
+USER_PROMPT = "しりとりをしましょう。んで終わったらダメ。私からはじめます。うみ"
 
 MODEL = "claude-sonnet-4-6"
 N_TRIALS = 50
@@ -26,14 +25,13 @@ N_TRIALS = 50
 results = []
 mikan_count = 0
 
-print(f"Running {N_TRIALS} trials (Fixed Prompt, prior word: かみ)...\n")
+print(f"Running {N_TRIALS} trials (Natural Imprecise, prior word: うみ)...\n")
 
 for i in range(N_TRIALS):
     try:
         response = client.messages.create(
             model=MODEL,
             max_tokens=100,
-            system=SYSTEM_PROMPT,
             messages=[
                 {"role": "user", "content": USER_PROMPT}
             ]
@@ -42,14 +40,17 @@ for i in range(N_TRIALS):
         is_mikan = "みかん" in output
         if is_mikan:
             mikan_count += 1
+
         results.append({
             "trial": i + 1,
             "output": output,
             "is_mikan": is_mikan,
             "timestamp": datetime.now().isoformat()
         })
+
         print(f"Trial {i+1:2d}: {output[:60]} {'🍊' if is_mikan else '✓'}")
         time.sleep(0.5)
+
     except Exception as e:
         print(f"Trial {i+1}: ERROR — {e}")
         results.append({
@@ -64,7 +65,8 @@ print(f"みかん: {mikan_count}/{N_TRIALS} ({mikan_count/N_TRIALS*100:.1f}%)")
 
 # Save CSV
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-filename = f"claude_fixed_prompt_kami_n{N_TRIALS}_{timestamp}.csv"
+filename = f"claude_natural_imprecise_umi_n{N_TRIALS}_{timestamp}.csv"
+
 with open(filename, "w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(f, fieldnames=["trial", "output", "is_mikan", "timestamp"])
     writer.writeheader()
